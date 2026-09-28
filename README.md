@@ -36,6 +36,16 @@ yarn dev
 
 Abre [http://localhost:3000](http://localhost:3000). La página se recarga al editar archivos dentro de `app/`.
 
+## Variables de entorno
+
+Copia `.env.example` a `.env.local` y ajusta los valores:
+
+| Variable                      | Descripción                                                                                     |
+| ----------------------------- | ----------------------------------------------------------------------------------------------- |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Número para el botón flotante y los CTA de WhatsApp. Código de país + número, solo dígitos (ej. `528112432165`). Si no se define, el botón no se muestra y los CTA usan el correo. |
+
+En Vercel, agrégala en **Project Settings → Environment Variables**. Como es `NEXT_PUBLIC_`, se inserta en el build: después de cambiarla hay que volver a desplegar.
+
 ## Scripts
 
 | Comando       | Descripción                                        |
@@ -51,9 +61,11 @@ Abre [http://localhost:3000](http://localhost:3000). La página se recarga al ed
 ```
 .
 ├── app/              # Rutas, layouts y estilos globales (App Router)
-│   ├── layout.tsx
-│   ├── page.tsx
-│   └── globals.css
+│   ├── layout.tsx    # Fuentes, metadata y botón flotante de WhatsApp
+│   ├── page.tsx      # Landing page (hero, servicios, proceso, nosotros, contacto)
+│   └── globals.css   # Paleta de marca y animaciones (entrada, scroll, reveal)
+├── components/       # Logo SVG, iconos, Reveal y botón de WhatsApp
+├── lib/site.ts       # Datos del negocio: contacto, servicios y pasos
 ├── public/           # Archivos estáticos servidos desde la raíz
 ├── desing/           # Referencias de diseño (mockups)
 ├── biome.json        # Configuración de Biome
