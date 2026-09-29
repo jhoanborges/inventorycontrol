@@ -24,6 +24,35 @@ const nav = [
 
 const capabilities = services.flatMap((s) => s.items);
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  url: site.url,
+  logo: `${site.url}/logo.svg`,
+  image: `${site.url}/opengraph-image`,
+  email: site.email,
+  telephone: site.phone.href.replace("tel:", ""),
+  areaServed: { "@type": "Country", name: "México" },
+  founder: {
+    "@type": "Person",
+    name: site.consultant.name,
+    jobTitle: site.consultant.role,
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios",
+    itemListElement: services.map((s) => ({
+      "@type": "OfferCatalog",
+      name: s.title,
+      itemListElement: s.items.map((name) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name },
+      })),
+    })),
+  },
+};
+
 export default function Home() {
   const wa = whatsappUrl(
     "Hola, me gustaría agendar un diagnóstico de inventario.",
@@ -35,13 +64,26 @@ export default function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: static JSON-LD built from site config
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <a
+        href="#inicio"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:rounded-xl focus:bg-navy-900 focus:px-4 focus:py-3 focus:font-bold focus:text-white"
+      >
+        Saltar al contenido
+      </a>
       <div className="scroll-progress fixed inset-x-0 top-0 z-[60] h-1 origin-left bg-gradient-to-r from-sky-500 via-brand-600 to-navy-900" />
 
       {/* ---------- Header ---------- */}
       <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
         <div className="header-bar mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-transparent bg-white/60 px-4 py-2.5 backdrop-blur-xl sm:px-5">
           <a href="#inicio" className="flex items-center gap-2.5">
-            <Logo className="size-10" />
+            <Logo alt="" className="size-10" />
             <span className="leading-tight">
               <span className="block font-extrabold tracking-tight text-navy-900">
                 {site.name}
@@ -465,9 +507,9 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-navy-900/5 px-4 py-10 sm:px-6">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-navy-900/60 sm:flex-row">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-navy-900/70 sm:flex-row">
           <div className="flex items-center gap-3">
-            <Logo className="size-8" />
+            <Logo alt="" className="size-8" />
             <span className="font-bold text-navy-900">{site.name}</span>
             <span>· {site.tagline}</span>
           </div>

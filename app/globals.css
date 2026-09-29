@@ -55,18 +55,6 @@ body {
   }
 }
 
-@keyframes grow {
-  from {
-    transform: scaleY(0);
-  }
-}
-
-@keyframes draw {
-  from {
-    stroke-dashoffset: 1;
-  }
-}
-
 @keyframes pop {
   from {
     opacity: 0;
@@ -102,28 +90,9 @@ body {
   animation-play-state: paused;
 }
 
-/* Logo drawing */
-.logo-animated .logo-bar {
-  transform-box: fill-box;
-  transform-origin: bottom;
-  animation: grow 0.7s cubic-bezier(0.3, 1.4, 0.5, 1) both;
-}
-
-.logo-animated .logo-boxes {
-  animation: pop 0.5s 0.8s cubic-bezier(0.3, 1.5, 0.5, 1) both;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.logo-animated .logo-arrow {
-  stroke-dasharray: 1;
-  animation: draw 1s 1s ease-out both;
-}
-
-.logo-animated .logo-arrowhead {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: pop 0.35s 1.9s ease-out both;
+/* Logo entrance */
+.logo-animated {
+  animation: pop 0.8s 0.25s cubic-bezier(0.3, 1.5, 0.5, 1) both;
 }
 
 /* WhatsApp pulse */

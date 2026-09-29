@@ -5,6 +5,7 @@ export const site = {
   domain: "inventorycontrol.mx",
   email: "flopez@inventorycontrol.mx",
   phone: { display: "+52 81 1243 2165", href: "tel:+528112432165" },
+  gaId: "G-ZKRZ7D3S77",
   consultant: { name: "Felix López", role: "Consultor Senior" },
 };
 
