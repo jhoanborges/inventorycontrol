@@ -10,6 +10,7 @@ import {
   WhatsAppIcon,
 } from "@/components/icons";
 import { Logo } from "@/components/logo";
+import { MobileNav } from "@/components/mobile-nav";
 import { Reveal } from "@/components/reveal";
 import { services, site, steps, whatsappUrl } from "@/lib/site";
 
@@ -107,14 +108,17 @@ export default function Home() {
               ))}
             </ul>
           </nav>
-          <a
-            href={primaryCta}
-            {...external}
-            className="shrink-0 rounded-xl bg-sky-100 px-4 py-2.5 text-sm font-bold text-navy-900 transition hover:bg-brand-600 hover:text-white"
-          >
-            <span className="sm:hidden">Contáctanos</span>
-            <span className="hidden sm:inline">Agenda un diagnóstico</span>
-          </a>
+          <div className="flex shrink-0 items-center gap-1.5">
+            <a
+              href={primaryCta}
+              {...external}
+              className="rounded-xl bg-sky-100 px-4 py-2.5 text-sm font-bold text-navy-900 transition hover:bg-brand-600 hover:text-white"
+            >
+              <span className="sm:hidden">Contáctanos</span>
+              <span className="hidden sm:inline">Agenda un diagnóstico</span>
+            </a>
+            <MobileNav items={nav} />
+          </div>
         </div>
       </header>
 

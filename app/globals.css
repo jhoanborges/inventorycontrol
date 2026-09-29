@@ -95,6 +95,18 @@ body {
   animation: pop 0.8s 0.25s cubic-bezier(0.3, 1.5, 0.5, 1) both;
 }
 
+/* Mobile menu */
+.mobile-nav:not([hidden]) {
+  animation: menu-in 0.18s ease-out;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
 /* WhatsApp pulse */
 .wa-float::before {
   content: "";
